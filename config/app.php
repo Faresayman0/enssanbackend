@@ -70,7 +70,9 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    // chnage the timezone to cairo
+    'timezone' => 'Africa/Cairo',
+
 
     /*
     |--------------------------------------------------------------------------

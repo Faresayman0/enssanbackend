@@ -36,11 +36,11 @@ type Device {
 
 
 type Mutation {
-    createDevice(macaddress: String!, longitude: String!, latitude: String!, bloodpressure: String!): Device! @create
+    createDevice(macaddress: String!, longitude: String!, latitude: String!, bloodpressure: String!): Device! @create @guard
     deleteuser(id: ID! @eq): User! @delete
     register(input: RegisterInput!): AuthPayload @field(resolver: "App\\GraphQL\\Mutations\\RegisterMutation")
     login(email: String!, password: String!): AuthPayload!  @field(resolver: "App\\GraphQL\\Mutations\\Login")
-     logout: Message! @field(resolver: "App\\GraphQL\\Mutations\\Logout") @guard
+    logout: Message! @field(resolver: "App\\GraphQL\\Mutations\\Logout") @guard
 }
 
 

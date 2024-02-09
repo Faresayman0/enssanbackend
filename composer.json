@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "mll-lab/laravel-graphql-playground": "^1.1",
         "nuwave/lighthouse": "^6.33",
+        "tcg/voyager": "*",
         "tymon/jwt-auth": "^2.0"
     },
     "require-dev": {

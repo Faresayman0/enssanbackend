@@ -23,6 +23,8 @@ return [
          */
         'name' => 'graphql',
 
+
+
         /*
          * Beware that middleware defined here runs before the GraphQL execution phase,
          * make sure to return spec-compliant responses in case an error is thrown.
@@ -38,9 +40,15 @@ return [
             // middleware, this delegates auth and permission checks to the field level.
             Nuwave\Lighthouse\Http\Middleware\AttemptAuthentication::class,
 
+            // jwt auth
+            // App\Http\Middleware\VerifyJWTToken::class,
+
+
+
             // Logs every incoming GraphQL query.
             // Nuwave\Lighthouse\Http\Middleware\LogGraphQLQueries::class,
         ],
+
 
         /*
          * The `prefix`, `domain` and `where` configuration options are optional.
@@ -61,7 +69,7 @@ return [
     |
     */
 
-    'guards' => null,
+    'guards' => ['jwt'],
 
     /*
     |--------------------------------------------------------------------------

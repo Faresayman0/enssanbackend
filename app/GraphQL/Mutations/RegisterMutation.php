@@ -26,6 +26,7 @@ class RegisterMutation
             'name' => $args['input']['name'],
             'email' => $args['input']['email'],
             'device' => $args['input']['device'],
+            'role' => 2,
             'password' => bcrypt($args['input']['password']),
         ]);
 
