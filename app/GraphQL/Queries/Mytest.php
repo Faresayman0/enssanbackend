@@ -2,9 +2,7 @@
 
 namespace App\GraphQL\Queries;
 
-use App\Models\Device;
-
-final class Mydevice
+final class Mytest
 {
     /**
      * @param  null  $_
@@ -12,7 +10,11 @@ final class Mydevice
      */
     public function __invoke($_, array $args)
     {
-        $user=auth()->user()->device;  // mac address
-        return Device::where('macaddress',$user)->get();
+        return [
+        "message" => "Hello World",
+        "date" => date("Y-m-d"),
+        "user" => auth()->user(),
+        "args" => $args
+    ];
     }
 }

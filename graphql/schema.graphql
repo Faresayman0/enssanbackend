@@ -59,4 +59,6 @@ input RegisterInput {
 
 type Message {
     message: String!
+    date: String!
+    user: User! @guard
 }
