@@ -1,3 +1,4 @@
+
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
@@ -6,7 +7,7 @@ type Query {
     users: [User!]! @all
     user(id: ID! @eq): User! @find
     devices: [Device!]! @all @guard
-    deviceByMacaddress(macaddress: String! @eq): Device! @find
+    deviceByMacaddress(macaddress: String!): Device! @field(resolver: "App\\GraphQL\\Queries\\DeviceQuery@deviceByMacaddress")
     me: User @guard
     mydevice: [Device!]! @guard
     mydevicebydate(date: String! @eq): [Device!]! @guard
@@ -23,7 +24,6 @@ type User {
     updated_at: DateTime!
 }
 
-
 type Device {
     id: ID!
     macaddress: String!
@@ -34,15 +34,13 @@ type Device {
     updated_at: DateTime!
 }
 
-
 type Mutation {
-    createDevice(macaddress: String!, longitude: String!, latitude: String!, bloodpressure: String!): Device! @create @guard
+    createDevice(macaddress: String!, longitude: String!, latitude: String!, bloodpressure: String!): Device! @field(resolver: "App\\GraphQL\\Mutations\\DeviceMutation@createOrUpdateDevice")
     deleteuser(id: ID! @eq): User! @delete
     register(input: RegisterInput!): AuthPayload @field(resolver: "App\\GraphQL\\Mutations\\RegisterMutation")
-    login(email: String!, password: String!): AuthPayload!  @field(resolver: "App\\GraphQL\\Mutations\\Login")
+    login(email: String!, password: String!): AuthPayload! @field(resolver: "App\\GraphQL\\Mutations\\Login")
     logout: Message! @field(resolver: "App\\GraphQL\\Mutations\\Logout") @guard
 }
-
 
 type AuthPayload {
     token: String!
